@@ -44,6 +44,7 @@ If we want to avoid all unecessary events to be raised we have to:
 - Remove only the old elements
 - Add only the new elements
 - Reorder the existing ones to be in the correct position
+- Restore the selection
 
 It should be easier than that!
 
