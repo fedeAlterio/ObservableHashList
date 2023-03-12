@@ -8,10 +8,6 @@ public class ObservableRangeCollection<T> : ObservableCollection<T>
     const string COUNT_STRING = "Count";
     const string INDEXER_NAME = "Item[]";
 
-    /// <summary>
-    /// Adds a range of objects but does not raise the OnCollectionChanged event until all objects are added.
-    /// </summary>
-    /// <param name="items">The set of objects to be added.</param>
     public void AddRange(IEnumerable<T> items)
     {
         CheckReentrancy();

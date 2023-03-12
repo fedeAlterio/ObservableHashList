@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace ObservableHashCollections;
-public class DelegateEqualityComparer : IEqualityComparer
+internal class DelegateEqualityComparer : IEqualityComparer
 {
     readonly DelegateEqualityComparer<object> _equalityComparer;
 
@@ -16,7 +16,7 @@ public class DelegateEqualityComparer : IEqualityComparer
         _equalityComparer = New(selector);
     }
 
-    public new bool Equals(object x, object y)
+    public new bool Equals(object? x, object? y)
     {
         return _equalityComparer.Equals(x, y);
     }
@@ -27,7 +27,7 @@ public class DelegateEqualityComparer : IEqualityComparer
     }
 }
 
-public class DelegateEqualityComparer<T> : IEqualityComparer<T>
+internal class DelegateEqualityComparer<T> : IEqualityComparer<T>
 {
     readonly Func<T, object> _selctor;
 
@@ -36,8 +36,11 @@ public class DelegateEqualityComparer<T> : IEqualityComparer<T>
         _selctor = selector;
     }
 
-    public bool Equals(T x, T y)
+    public bool Equals(T? x, T? y)
     {
+        if(x  == null || y == null)
+            return false;
+
         var (valueX, valueY) = (_selctor.Invoke(x), _selctor.Invoke(y));
         return Equals(valueX, valueY);
     }
