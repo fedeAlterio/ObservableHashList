@@ -127,13 +127,6 @@ The code above means: Add every person with different Id. If 2 people have the s
 
 # Update strategies:
 
-```csharp
-    public ObservableHashList<Person> People { get; }
-        = ObservableHashList.New<Person>()
-                            .WithSelectionKey(person => person.Id)
-                            .WithDefaultEquality()
-                            .OnUpdateReplaceItem();
-```
 `OnUpdateReplaceItem` means that on update (so if 2 elements have same selection key, but are not equal according to the equality comparer), the old element is removed and the newer one is added.
 
 ```csharp
